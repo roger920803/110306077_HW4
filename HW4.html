@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="HW4.css" rel="stylesheet" type= "text/css">
+	<title>HW4</title>
+</head>
+<body onkeydown="enter()">
+	<div class="css1">
+		<h1>Guessing Game</h1>
+			<p>Your Guess(1 ~ 100)</p>
+			<input class="css2" type="text" id="number">
+			<p><input type="button" class="css3" value="PLAY" id="play" onclick="check()"></p>
+		<div class= "css4" id="result">
+			<div class="css5">Result
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var max=100;
+		var min=1;
+		var i=1;
+		var answer=Math.floor(Math.random()*100+1);
+		function check(){
+			var number=document.getElementById('number').value;
+			if(number==answer){
+				alert('BOOM!');
+			}else if(number < answer){
+				min=number;
+				i++;
+				output();
+				document.getElementById('number').value='';
+			}else{
+				max=number;
+				i++;
+				output();
+				document.getElementById('number').value='';
+			}
+		}
+		function output(){
+			var nL=document.createElement('div');
+			var tN=document.createTextNode(min+'-'+max);
+			nL.appendChild(tN);
+			if (i%2==1) {
+				nL.setAttribute('class','css5');
+			}else{
+				nL.setAttribute('class','css6');
+			}
+			document.getElementById('result').appendChild(nL);
+		}
+		function enter(){
+			if(event.keyCode==13){
+				document.getElementById('play').click();
+			}
+		}
+	</script>
+</body>
+</html>
